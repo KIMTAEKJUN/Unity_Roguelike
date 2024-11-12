@@ -6,8 +6,12 @@ namespace Enemy
     {
         public int maxHealth = 3;
         private int _currentHealth;
+        
+        public delegate void DestroyedAction();
+        public event DestroyedAction OnDestroyed;
 
-        void Start()
+
+        private void Start()
         {
             _currentHealth = maxHealth;
         }
@@ -21,8 +25,10 @@ namespace Enemy
             }
         }
 
-        void Die()
+        private void Die()
         {
+            // 파괴될 때 이벤트를 통해 SpawnManager에 알림
+            OnDestroyed?.Invoke();
             Destroy(gameObject);
         }
     }

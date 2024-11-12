@@ -10,18 +10,19 @@ namespace Pattern
         {
             get
             {
-                if (_instance == null)
+                if (_instance != null) return _instance;
+
+                _instance = FindObjectOfType<T>();
+
+                if (_instance != null) return _instance;
+
+                var obj = new GameObject(typeof(T).Name)
                 {
-                    _instance = FindObjectOfType<T>();
-                    
-                    if (_instance == null)
-                    {
-                        GameObject obj = new GameObject();
-                        obj.name = typeof(T).Name;
-                        _instance = obj.AddComponent<T>();
-                        Debug.LogError("싱글톤 객체를 찾을 수 없습니다.");
-                    }
-                }
+                    hideFlags = HideFlags.HideAndDontSave
+                };
+                _instance = obj.AddComponent<T>();
+                Debug.LogError("싱글톤 객체를 찾을 수 없습니다.");
+                
                 return _instance;
             }
         }
