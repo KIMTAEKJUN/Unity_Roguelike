@@ -1,36 +1,36 @@
 using Enemy;
 using UnityEngine;
 
-namespace DefaultNamespace
+public class Projectile : MonoBehaviour
 {
-    public class Projectile : MonoBehaviour
+    [SerializeField] private float speed = 10f; // 발사체 속도
+    [SerializeField] private int damage = 1;
+    private Vector2 _direction; // 발사체 이동 방향
+    
+
+    // 발사체가 이동할 방향을 설정하는 함수
+    public void SetDirection(Vector2 dir)
     {
-        public float speed = 10f;     // 발사체 속도
-        public int damage = 1;        // 발사체가 줄 데미지
+        _direction = dir.normalized;
+    }
 
-        private Vector2 direction;    // 발사체 이동 방향
+    private void Update()
+    {
+        // 발사체 이동
+        transform.Translate(_direction * (speed * Time.deltaTime));
+    }
 
-        // 발사체가 이동할 방향을 설정하는 함수
-        public void SetDirection(Vector2 dir)
-        {
-            direction = dir.normalized;
-        }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 충돌한 대상이 적이 아닌 경우 반환
+        if (!collision.CompareTag("Enemy")) return;
 
-        void Update()
-        {
-            // 발사체 이동
-            transform.Translate(direction * speed * Time.deltaTime);
-        }
+        // 적의 체력 컴포넌트를 가져와 데미지를 입힘
+        var enemyHealth = collision.GetComponent<EnemyHealth>();
+        if (enemyHealth == null) return;
 
-        void OnTriggerEnter2D(Collider2D collision)
-        {
-            // 적과 충돌하면 적에게 데미지를 입히고 발사체 파괴
-            if (collision.CompareTag("Enemy"))
-            {
-                // 적의 Health 컴포넌트를 가져와 데미지를 입힘 (적 스크립트에 맞춰 구현 필요)
-                collision.GetComponent<EnemyHealth>().TakeDamage(damage);
-                Destroy(gameObject); // 발사체 파괴
-            }
-        }
+        // 적의 체력에 데미지를 가하고 발사체 파괴
+        enemyHealth.TakeDamage(damage);
+        Destroy(gameObject);
     }
 }

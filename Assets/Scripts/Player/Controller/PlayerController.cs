@@ -11,52 +11,54 @@ namespace Player.Controller
 
         private float _attackTimer = 0f;
 
-        void Update()
+        private void Update()
         {
             Move();
             Attack();
         }
 
-        void Move()
+        private void Move()
         {
-            float moveX = Input.GetAxis("Horizontal");
-            float moveY = Input.GetAxis("Vertical");
-            Vector2 movement = new Vector2(moveX, moveY).normalized;
-            transform.Translate(movement * moveSpeed * Time.deltaTime);
+            var moveX = Input.GetAxis("Horizontal");
+            var moveY = Input.GetAxis("Vertical");
+            var movement = new Vector2(moveX, moveY).normalized;
+            transform.Translate(movement * (moveSpeed * Time.deltaTime));
         }
 
-        void Attack()
+        private void Attack()
         {
             _attackTimer += Time.deltaTime;
 
-            if (_attackTimer >= attackCooldown)
-            {
-                GameObject target = FindClosestEnemy();
-                if (target != null)
-                {
-                    Vector3 direction = (target.transform.position - transform.position).normalized;
-                    GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                    projectile.GetComponent<Rigidbody2D>().velocity = direction * 10f;
-                }
+            if (_attackTimer < attackCooldown)
+                return;
 
-                _attackTimer = 0f;
-            }
+            _attackTimer = 0f;
+
+            var target = FindClosestEnemy();
+            if (target == null) return;
+
+            var direction = (target.transform.position - transform.position).normalized;
+
+            var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            var projectileRb = projectile.GetComponent<Rigidbody2D>();
+            if (projectileRb != null) projectileRb.velocity = direction * 10f;
         }
 
         private GameObject FindClosestEnemy()
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             GameObject closestEnemy = null;
-            float closestDistance = attackRange;
+            var closestDistance = attackRange; // 공격 범위를 기준으로 초기 거리 설정
 
-            foreach (GameObject enemy in enemies)
+            foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
-                float distance = Vector2.Distance(transform.position, enemy.transform.position);
-                if (distance < closestDistance)
-                {
-                    closestEnemy = enemy;
-                    closestDistance = distance;
-                }
+                var distance = Vector2.Distance(transform.position, enemy.transform.position);
+
+                // 공격 범위를 초과하는 경우 스킵
+                if (distance >= closestDistance)
+                    continue;
+
+                closestEnemy = enemy;
+                closestDistance = distance;
             }
 
             return closestEnemy;

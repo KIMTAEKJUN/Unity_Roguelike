@@ -7,7 +7,7 @@ namespace Player
         public int maxHealth = 5;
         private int _currentHealth;
 
-        void Start()
+        private void Start()
         {
             _currentHealth = maxHealth;
         }
@@ -23,10 +23,10 @@ namespace Player
             }
         }
 
-        void Die()
+        private void Die()
         {
             Debug.Log("플레이어 캐릭터가 죽었습니다!");
-            // 게임 오버 처리 로직 추가 가능
+            Time.timeScale = 0f;
         }
     }
 }
