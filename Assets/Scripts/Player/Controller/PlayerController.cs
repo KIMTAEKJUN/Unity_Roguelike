@@ -4,9 +4,9 @@ namespace Player.Controller
 {
     public class PlayerController : MonoBehaviour
     {
-        public float moveSpeed = 5f;
-        public float attackRange = 10f;
-        public float attackCooldown = 1f;
+        [SerializeField] private float moveSpeed = 5f;
+        [SerializeField] private float attackRange = 10f;
+        [SerializeField] private float attackCooldown = 1f;
         public GameObject projectilePrefab;
 
         private float _attackTimer = 0f;

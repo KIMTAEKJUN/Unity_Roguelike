@@ -4,14 +4,17 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float speed = 10f; // 발사체 속도
-    [SerializeField] private int damage = 1;
+    [SerializeField] private int damage = 1; // 발사체 데미지
     private Vector2 _direction; // 발사체 이동 방향
     
-
-    // 발사체가 이동할 방향을 설정하는 함수
-    public void SetDirection(Vector2 dir)
+    private void Start()
     {
-        _direction = dir.normalized;
+        // 발사체 생성 시 플레이어를 향하는 방향으로 설정
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            _direction = (player.transform.position - transform.position).normalized;   
+        }
     }
 
     private void Update()

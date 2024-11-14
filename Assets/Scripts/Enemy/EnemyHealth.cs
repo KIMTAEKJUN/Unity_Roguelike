@@ -4,8 +4,8 @@ namespace Enemy
 {
     public class EnemyHealth : MonoBehaviour
     {
-        public int maxHealth = 3;
-        private int _currentHealth;
+        [SerializeField] private float maxHealth = 3;
+        private float _currentHealth;
         
         public delegate void DestroyedAction();
         public event DestroyedAction OnDestroyed;
@@ -16,9 +16,10 @@ namespace Enemy
             _currentHealth = maxHealth;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             _currentHealth -= damage;
+            
             if (_currentHealth <= 0)
             {
                 Die();
@@ -27,7 +28,6 @@ namespace Enemy
 
         private void Die()
         {
-            // 파괴될 때 이벤트를 통해 SpawnManager에 알림
             OnDestroyed?.Invoke();
             Destroy(gameObject);
         }
