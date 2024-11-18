@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3384408650749710438}
   - component: {fileID: 2737291638791790463}
   - component: {fileID: 3503436486562653113}
-  - component: {fileID: 7569420613104889480}
+  - component: {fileID: -6205852658569144000}
   - component: {fileID: 3052893283386775773}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: TankEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.10102655, g: 0.4056604, b: 0.05549129, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -160,7 +160,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7569420613104889480
+--- !u!114 &-6205852658569144000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,14 +169,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1503085821420116405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0a8318d68c54f0b8db3ce2ba7476b66, type: 3}
+  m_Script: {fileID: 11500000, guid: cd3e6d8539274b9d8835ac231120224e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  detectionRange: 6
+  moveSpeed: 3
+  detectionRange: 8
   attackRange: 1.5
   damage: 1
-  attackCooldown: 2
+  attackCooldown: 1
+  shieldDuration: 3
+  shieldCooldown: 10
 --- !u!114 &3052893283386775773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,4 +191,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e90ca094fe452e972f9f5367343541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 5
