@@ -7,6 +7,11 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int damage = 1; // 발사체 데미지
     private Vector2 _direction; // 발사체 이동 방향
     
+    public void SetDirection(Vector2 direction)
+    {
+        _direction = direction.normalized;
+    }
+    
     private void Start()
     {
         // 발사체 생성 시 플레이어를 향하는 방향으로 설정
