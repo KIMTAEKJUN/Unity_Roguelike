@@ -5,31 +5,31 @@ namespace Enemy.Controller
 {
     public class EnemyController : MonoBehaviour
     {
-        [SerializeField] private float moveSpeed = 3f; // Inspector에서 이동 속도 설정
-        [SerializeField] private float detectionRange = 8f; // 감지 범위
-        [SerializeField] private float attackRange = 1.5f; // 플레이어를 공격하는 범위
-        [SerializeField] private int damage = 1; // 적이 입히는 데미지
-        [SerializeField] private float attackCooldown = 1f; // 공격 쿨다운
-        private Transform _player;
-        private float _attackTimer;
+        [SerializeField] protected float moveSpeed = 3f; // 이동 속도 설정
+        [SerializeField] protected float detectionRange = 8f; // 감지 범위
+        [SerializeField] protected float attackRange = 1.5f; // 플레이어를 공격하는 범위
+        [SerializeField] protected int damage = 1; // 적이 입히는 데미지
+        [SerializeField] protected float attackCooldown = 1f; // 공격 쿨다운
+        protected Transform Player; // 플레이어 위치
+        private float _attackTimer; // 공격 쿨다운 타이머
         
 
-        private void Start()
+        protected virtual void Start()
         {
-            _player = GameObject.FindGameObjectWithTag("Player").transform;
+            Player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             _attackTimer += Time.deltaTime;
 
-            if (_player == null) return;
+            if (Player == null) return;
 
-            var distanceToPlayer = Vector2.Distance(transform.position, _player.position);
+            var distanceToPlayer = Vector2.Distance(transform.position, Player.position);
 
             if (distanceToPlayer > detectionRange) return;
 
-            var direction = (_player.position - transform.position).normalized;
+            var direction = (Player.position - transform.position).normalized;
 
             // 플레이어가 공격 범위 내에 있을 때
             if (distanceToPlayer <= attackRange && _attackTimer >= attackCooldown)
@@ -43,9 +43,9 @@ namespace Enemy.Controller
             }
         }
 
-        private void AttackPlayer()
+        protected virtual void AttackPlayer()
         {
-            var playerHealth = _player.GetComponent<PlayerHealth>();
+            var playerHealth = Player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);

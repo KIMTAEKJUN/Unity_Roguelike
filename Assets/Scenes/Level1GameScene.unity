@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageScreen: {fileID: 554631082}
-  maxHealth: 3
+  maxHealth: 15
 --- !u!114 &74233920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6674,12 +6674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd72f475996d414ea239486e96621cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnables:
-  - prefab: {fileID: 1503085821420116405, guid: 815eaf986965141f1a61b9c4c829d395, type: 3}
-    totalSpawnLimit: 20
-    maxCount: 10
-    spawnInterval: 1
-    spawnRadius: 8
+  spawnables: []
 --- !u!4 &1736258714
 Transform:
   m_ObjectHideFlags: 0

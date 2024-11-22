@@ -9,9 +9,8 @@ namespace Enemy
     {
         [SerializeField] private float enhancedAttackChance = 0.2f; // 
         [SerializeField] private int enhancedDamage = 3; // 강화 공격 데미지
-        // [SerializeField] protected GameObject enhancedAttackEffect; // 강화 공격 이펙트
         [SerializeField] private Color enhancedAttackColor = Color.blue; // 강화 공격 시 적용할 색상
-        [SerializeField] private float effectDuration = 0.5f;
+        [SerializeField] private float effectDuration = 0.5f; // 강화 공격 색상 효과 지속 시간
         
         private SpriteRenderer _spriteRenderer;
 

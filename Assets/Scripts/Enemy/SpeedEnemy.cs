@@ -6,11 +6,11 @@ namespace Enemy
 {
     public class SpeedEnemy : EnemyController
     {
-        [SerializeField] private float speedBoostMultiplier = 2f;
-        [SerializeField] private float boostDuration = 1f;
-        [SerializeField] private float boostCooldown = 5f;
-        private float _boostTimer;
-        private bool _isBoosting;
+        [SerializeField] private float speedBoostMultiplier = 2f; // 이동 속도 증가 배수
+        [SerializeField] private float boostDuration = 1f; // 이동 속도 증가 지속 시간
+        [SerializeField] private float boostCooldown = 5f; // 이동 속도 증가 쿨타임
+        private float _boostTimer; // 이동 속도 증가 쿨타임 타이머
+        private bool _isBoosting; // 이동 속도 증가 중인지 여부
 
         protected override void Start()
         {

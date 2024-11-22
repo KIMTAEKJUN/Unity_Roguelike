@@ -1,20 +1,29 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Player.Controller
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private float moveSpeed = 5f;
-        [SerializeField] private float attackRange = 10f;
-        [SerializeField] private float attackCooldown = 1f;
+        [SerializeField] private float moveSpeed = 5f; // 이동 속도 설정
+        [SerializeField] private float attackRange = 10f; // 공격 범위
+        [SerializeField] private float attackCooldown = 1f; // 공격 쿨다운
+        private float _originalMoveSpeed; // 원래 이동 속도
+        private bool _isSlowed; // 이동 속도 감소 중인지 여부
         public GameObject projectilePrefab;
 
-        private float _attackTimer = 0f;
+        private float _attackTimer = 0f; // 공격 쿨다운 타이머
+        private bool _isFrozen = false; // 플레이어가 얼어있는지 여부
 
+        
         private void Update()
         {
+            if (_isFrozen)
+            {
+                Debug.Log("Player is frozen! Cannot move.");
+                return;
+            }
             Move();
-            Attack();
         }
 
         private void Move()
@@ -62,6 +71,24 @@ namespace Player.Controller
             }
 
             return closestEnemy;
+        }
+        
+        public void ApplyFreeze(float duration)
+        {
+            if (_isFrozen)
+            {
+                Debug.Log("Player already frozen!");
+                return;
+            }
+
+            Debug.Log($"Player frozen for {duration} seconds!");
+            _isFrozen = true;
+            Invoke(nameof(Unfreeze), duration);
+        }
+
+        private void Unfreeze()
+        {
+            _isFrozen = false; // 멈춤 상태 해제
         }
     }
 }
