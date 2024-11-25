@@ -176,8 +176,8 @@ MonoBehaviour:
   detectionRange: 6
   attackRange: 1.5
   damage: 1
-  attackCooldown: 1.2
-  enhancedAttackChance: 1
+  attackCooldown: 1.5
+  enhancedAttackChance: 0.3
   enhancedDamage: 3
   enhancedAttackColor: {r: 0.030037403, g: 0, b: 1, a: 1}
   effectDuration: 0.5
