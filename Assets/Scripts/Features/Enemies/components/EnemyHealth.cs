@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace Enemy
+namespace Features.Enemies.components
 {
     public class EnemyHealth : MonoBehaviour
     {
-        [SerializeField] private float maxHealth = 3;
+        [SerializeField] private float maxHealth = 3f;
         private float _currentHealth;
         
         public delegate void DestroyedAction();
