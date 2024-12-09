@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Features.Enemies.Types
 {
-    public class RangeEnemy : EnemyController
+    public class RangeEnemy : EnemyBase
     {
         [SerializeField] private GameObject freezeProjectilePrefab;
 

@@ -48,7 +48,7 @@ namespace Features.Enemies.Bosses
             }
         }
         
-        protected override void OnBossStart()
+        public override void OnBossStart()
         {
             Debug.Log("Priest: 전투 시작과 함께 성스러운 오라 활성화!");
             healCooldown *= 1.1f; // 초기화 로직
@@ -58,6 +58,7 @@ namespace Features.Enemies.Bosses
         {
             healCooldown -= 1f; // 회복 주기 단축
             Debug.Log("Priest: 페이즈 2 전환 - 회복 속도 증가!");
+            // 추후 추가 전환 로직
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Features.Enemies.Types
 {
-    public class NormalEnemy : EnemyController
+    public class NormalEnemy : EnemyBase
     {
         [SerializeField] private float enhancedAttackChance = 0.2f; // 
         [SerializeField] private int enhancedDamage = 3; // 강화 공격 데미지

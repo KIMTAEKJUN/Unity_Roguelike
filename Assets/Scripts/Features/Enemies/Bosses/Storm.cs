@@ -8,7 +8,7 @@ namespace Features.Enemies.Bosses
     {
         [SerializeField] private int lightningCount = 1; // 번개 공격 횟수
         [SerializeField] private float lightningCooldown = 3f; // 번개 공격 쿨타임
-        [SerializeField] private float lightningDamage = 25f; // 번개 데미지
+        [SerializeField] private float lightningDamage = 20f; // 번개 데미지
         [SerializeField] private float lightningRange = 5f; // 번개 범위
 
         private float _lightningTimer; // 번개 공격 타이머
@@ -49,7 +49,7 @@ namespace Features.Enemies.Bosses
             Debug.Log($"{hitCount}개 대상에게 번개 데미지 적용");
         }
         
-        protected override void OnBossStart()
+        public override void OnBossStart()
         {
             Debug.Log("Storm: 전투 시작과 함께 폭풍우 생성!");
             lightningCount = 3; // 초기화 로직
@@ -59,6 +59,7 @@ namespace Features.Enemies.Bosses
         {
             lightningCount += 2;
             Debug.Log("Storm: 페이즈 2 전환 - 번개 개수 증가!");
+            // 추후 추가 전환 로직
         }
     }
 }

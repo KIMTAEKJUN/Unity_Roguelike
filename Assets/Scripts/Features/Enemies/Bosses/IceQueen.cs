@@ -46,7 +46,7 @@ namespace Features.Enemies.Bosses
 
                 if (target.CompareTag("Enemy"))
                 {
-                    var enemyController = target.GetComponent<EnemyController>();
+                    var enemyController = target.GetComponent<EnemyBase>();
                     if (enemyController != null)
                     {
                         enemyController.ApplyFreeze(freezeDuration);
@@ -57,7 +57,7 @@ namespace Features.Enemies.Bosses
             Debug.Log($"{hitCount}개 대상에게 얼음 효과 적용");
         }
         
-        protected override void OnBossStart()
+        public override void OnBossStart()
         {
             Debug.Log("IceQueen: 전투 시작과 함께 얼음 장벽 생성!");
             explosionRange *= 1.2f; // 초기화 로직
@@ -67,6 +67,7 @@ namespace Features.Enemies.Bosses
         {
             explosionRange += 1f;
             Debug.Log("IceQueen: 페이즈 2 전환 - 폭발 범위 증가!");
+            // 추후 추가 전환 로직
         }
     }
 }

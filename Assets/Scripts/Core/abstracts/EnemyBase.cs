@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core.abstracts
 {
-    public class EnemyController : MonoBehaviour
+    public class EnemyBase : MonoBehaviour
     {
         [SerializeField] protected float moveSpeed = 3f; // 이동 속도 설정
         [SerializeField] protected float detectionRange = 8f; // 감지 범위

@@ -20,7 +20,7 @@ namespace Features.Projectiles.EnemyProjectiles
             if (playerController != null)
             {
                 playerController.ApplyFreeze(freezeDuration);
-                Debug.Log($"Player frozen for {freezeDuration} seconds!");
+                Debug.Log($"플레이어 얼림! {freezeDuration}초 동안 멈춥니다.");
             }
             else
             {

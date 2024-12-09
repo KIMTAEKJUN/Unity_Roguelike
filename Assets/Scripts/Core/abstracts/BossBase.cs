@@ -81,7 +81,7 @@ namespace Core.abstracts
             Destroy(gameObject);
         } 
 
-        protected abstract void OnBossStart(); // 보스 초기화 구현
+        public abstract void OnBossStart(); // 보스 초기화 구현
         protected abstract void OnPhaseTransition(); // 페이즈 전환 구현
     }
 }

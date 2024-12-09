@@ -20,7 +20,7 @@ namespace Features.Player
         {
             if (_isFrozen)
             {
-                Debug.Log("Player is frozen! Cannot move.");
+                Debug.Log("플레이어 멈춤(얼음) 상태!");
                 return;
             }
             Move();
@@ -58,7 +58,7 @@ namespace Features.Player
         {
             GameObject closestTarget = null;
             var closestDistance = attackRange;
-            
+    
             // 적 탐지
             foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
@@ -88,11 +88,11 @@ namespace Features.Player
         {
             if (_isFrozen)
             {
-                Debug.Log("Player already frozen!");
+                Debug.Log("플레이어 이미 얼어있음!");
                 return;
             }
 
-            Debug.Log($"Player frozen for {duration} seconds!");
+            Debug.Log($"플레이어 얼림! {duration}초 동안 멈춤 상태 유지됨.");
             _isFrozen = true;
             Invoke(nameof(Unfreeze), duration);
         }

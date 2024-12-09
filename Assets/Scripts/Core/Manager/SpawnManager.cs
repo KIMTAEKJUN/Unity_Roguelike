@@ -14,10 +14,10 @@ namespace Core.Manager
         public List<EnemySpawnable> enemySpawnables = new List<EnemySpawnable>();
         public BossSpawnable bossSpawnable; // 보스 스폰 정보
 
-        private readonly Dictionary<GameObject, List<GameObject>> _activeEnemies = 
+        private readonly Dictionary<GameObject, List<GameObject>> _activeEnemies =
             new Dictionary<GameObject, List<GameObject>>();
 
-        private readonly Dictionary<GameObject, int> _totalSpawnedEnemies = 
+        private readonly Dictionary<GameObject, int> _totalSpawnedEnemies =
             new Dictionary<GameObject, int>();
 
         private bool _bossSpawned; // 보스 스폰 여부
@@ -36,7 +36,7 @@ namespace Core.Manager
                 StartCoroutine(SpawnBoss(bossSpawnable));
             }
         }
-        
+
         private IEnumerator SpawnEnemy(EnemySpawnable spawnable)
         {
             while (true)
@@ -75,15 +75,22 @@ namespace Core.Manager
 
             _bossSpawned = true;
 
-            // 보스 사망 시 처리
-            var bossHealth = boss.GetComponent<BossBase>();
-            if (bossHealth != null)
+            // 보스 체력바 활성화
+            var bossBase = boss.GetComponent<BossBase>();
+            if (bossBase != null)
             {
-                bossHealth.OnDestroyed += () =>
+                GameManager.Instance.ActivateBoss(bossBase); // GameManager에 보스 등록
+
+                bossBase.OnDestroyed += () =>
                 {
                     Debug.Log($"Boss {spawnable.bossPrefab.name} 제거됨");
+                    GameManager.Instance.OnBossDefeated(); // 보스 사망 처리
                     Destroy(boss);
                 };
+            }
+            else
+            {
+                Debug.LogError("BossPrefab is missing a BossBase component.");
             }
         }
     }

@@ -61,7 +61,7 @@ namespace Features.Enemies.Bosses
             // 폭발 효과 (이펙트 추가 예정)
         }
         
-        protected override void OnBossStart()
+        public override void OnBossStart()
         {
             
             Debug.Log("Destroyer: 보스 시작!");
@@ -72,6 +72,7 @@ namespace Features.Enemies.Bosses
         {
             explosionRange *= 1.5f;
             Debug.Log("Destroyer: 페이즈 2 전환 - 폭발 범위 증가!");
+            // 추후 추가 전환 로직
         }
     }
 }

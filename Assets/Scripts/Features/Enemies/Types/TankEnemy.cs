@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features.Enemies.Types
 {
-    public class TankEnemy : EnemyController
+    public class TankEnemy : EnemyBase
     {
         [SerializeField] private float shieldDuration = 3f;
         [SerializeField] private float shieldCooldown = 10f;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features.Enemies.Types
 {
-    public class SpeedEnemy : EnemyController
+    public class SpeedEnemy : EnemyBase
     {
         [SerializeField] private float speedBoostMultiplier = 2f; // 이동 속도 증가 배수
         [SerializeField] private float boostDuration = 1f; // 이동 속도 증가 지속 시간

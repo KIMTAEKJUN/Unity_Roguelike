@@ -48,7 +48,7 @@ namespace Features.Enemies.Bosses
             Debug.Log($"{hitCount}개 대상에게 불길 데미지 적용");
         }
         
-        protected override void OnBossStart()
+        public override void OnBossStart()
         {
             Debug.Log("FireBeast: 전투 시작과 함께 불길 보호막 활성화!");
             fireCooldown *= 0.9f; // 초기화 로직
@@ -58,6 +58,7 @@ namespace Features.Enemies.Bosses
         {
             fireCooldown -= 1f;
             Debug.Log("FireBeast: 페이즈 2 전환 - 불길 이동 속도 증가!");
+            // 추후 추가 전환 로직
         }
     }
 }

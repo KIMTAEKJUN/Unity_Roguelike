@@ -6,7 +6,7 @@ namespace UI.HUD
 {
     public class BossHealthBar : MonoBehaviour
     {
-        [SerializeField] private Slider healthSlider; // 체력 슬라이더
+        [SerializeField] private Slider healthSlider;
         private BossBase _bossBase;
 
         public void SetBoss(BossBase activeBossBase)
@@ -14,7 +14,6 @@ namespace UI.HUD
             _bossBase = activeBossBase;
             healthSlider.maxValue = _bossBase.maxHealth;
             healthSlider.value = _bossBase.CurrentHealth;
-            gameObject.SetActive(true); // 체력바 활성화
         }
 
         private void Update()

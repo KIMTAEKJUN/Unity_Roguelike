@@ -42,6 +42,8 @@ namespace Features.Projectiles.PlayerProjectiles
                     enemyHealth.TakeDamage(damage);
                     Debug.Log($"{collision.name}에게 {damage} 데미지를 입힘 (Enemy)");
                 }
+                
+                Destroy(gameObject);
             }
             else if (collision.CompareTag("Boss"))
             {
@@ -51,9 +53,9 @@ namespace Features.Projectiles.PlayerProjectiles
                     bossBase.TakeDamage(damage);
                     Debug.Log($"{collision.name}에게 {damage} 데미지를 입힘 (Boss)");
                 }
+                
+                Destroy(gameObject);
             }
-            
-            Destroy(gameObject);
         }
     }    
 }
