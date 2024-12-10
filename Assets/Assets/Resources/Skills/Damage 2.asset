@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Ferocity
   description: Increases attack damage by 15%.
-  type: 3
+  type: 4
   value: 1.5

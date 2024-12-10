@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea8e2c91bc7b44b2b70d3eeed1a10276, type: 3}
-  m_Name: Damage 8
+  m_Name: Damage 6
   m_EditorClassIdentifier: 
-  skillName: Warrior's Spirit
-  description: Increases attack damage by 45%.
-  type: 3
-  value: 4.5
+  skillName: Overwhelming Force
+  description: Increases attack damage by 35%.
+  type: 4
+  value: 3.5

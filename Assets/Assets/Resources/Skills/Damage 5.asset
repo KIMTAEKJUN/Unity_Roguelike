@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Crippling Strike
   description: Increases attack damage by 30%.
-  type: 3
+  type: 4
   value: 3
