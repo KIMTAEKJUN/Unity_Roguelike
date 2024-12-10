@@ -7,12 +7,12 @@ namespace Features.Projectiles.PlayerProjectiles
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private float speed = 10f; // 발사체 속도
-        [SerializeField] private int damage = 1; // 발사체 데미지
+        private float _damage; // 발사체 데미지
         private Vector2 _direction; // 발사체 이동 방향
-    
-        public void SetDirection(Vector2 direction)
+        
+        public void SetDamage(float damage)
         {
-            _direction = direction.normalized;
+            _damage = damage;
         }
     
         private void Start()
@@ -39,8 +39,8 @@ namespace Features.Projectiles.PlayerProjectiles
                 var enemyHealth = collision.GetComponent<EnemyHealth>();
                 if (enemyHealth != null)
                 {
-                    enemyHealth.TakeDamage(damage);
-                    Debug.Log($"{collision.name}에게 {damage} 데미지를 입힘 (Enemy)");
+                    enemyHealth.TakeDamage(_damage);
+                    Debug.Log($"{collision.name}에게 {_damage} 데미지를 입힘 (Enemy)");
                 }
                 
                 Destroy(gameObject);
@@ -50,8 +50,8 @@ namespace Features.Projectiles.PlayerProjectiles
                 var bossBase = collision.GetComponent<BossBase>();
                 if (bossBase != null)
                 {
-                    bossBase.TakeDamage(damage);
-                    Debug.Log($"{collision.name}에게 {damage} 데미지를 입힘 (Boss)");
+                    bossBase.TakeDamage(_damage);
+                    Debug.Log($"{collision.name}에게 {_damage} 데미지를 입힘 (Boss)");
                 }
                 
                 Destroy(gameObject);

@@ -1,5 +1,6 @@
 using System.Collections;
 using Features.Player;
+using Features.Player.components;
 using UnityEngine;
 
 namespace Core.abstracts
@@ -52,7 +53,7 @@ namespace Core.abstracts
 
         protected virtual void AttackPlayer()
         {
-            var playerHealth = Player.GetComponent<PlayerHealth>();
+            var playerHealth = Player.GetComponent<PlayerStats>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);

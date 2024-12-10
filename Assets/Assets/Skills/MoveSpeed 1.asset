@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8e2c91bc7b44b2b70d3eeed1a10276, type: 3}
+  m_Name: MoveSpeed 1
+  m_EditorClassIdentifier: 
+  skillName: Fleet Footed
+  description: Increases movement speed by 5%.
+  type: 2
+  value: 0.05

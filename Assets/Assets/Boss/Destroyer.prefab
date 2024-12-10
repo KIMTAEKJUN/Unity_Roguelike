@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6435046657790500206}
   - component: {fileID: 6483552309231581391}
   - component: {fileID: 7247524412915028316}
-  - component: {fileID: 8940817620603669004}
   - component: {fileID: 2484038371856230878}
   - component: {fileID: 2843269863239470824}
   m_Layer: 0
@@ -108,19 +107,6 @@ MonoBehaviour:
   explosionCooldown: 4
   explosionRange: 3.5
   explosionDamage: 25
---- !u!114 &8940817620603669004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8736084340861202262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7bf278705794c4cb1809249084bc7ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 0}
 --- !u!61 &2484038371856230878
 BoxCollider2D:
   m_ObjectHideFlags: 0

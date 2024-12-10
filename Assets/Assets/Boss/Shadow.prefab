@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 865008447947879681}
   - component: {fileID: 5656488575881752606}
-  - component: {fileID: 8429686548687715811}
   - component: {fileID: 6860942351605321999}
   - component: {fileID: 6750593990734579524}
   - component: {fileID: 32888242728319110}
@@ -88,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8429686548687715811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6527095129445130181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7bf278705794c4cb1809249084bc7ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 0}
 --- !u!61 &6860942351605321999
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190,6 +176,5 @@ MonoBehaviour:
   moveSpeed: 1.6
   detectionRange: 12
   isPhaseChanged: 1
-  clonePrefab: {fileID: 6527095129445130181}
   teleportCooldown: 4
-  cloneCount: 2
+  teleportRange: 5
