@@ -22,8 +22,7 @@ namespace Features.Enemies.Types
 
             if (projectileRb != null)
             {
-                projectileRb.velocity = direction * 10f; // 발사체 속도 조절
-                Debug.Log("발사체가 플레이어를 향해 발사되었습니다.");
+                projectileRb.velocity = direction * 10f;
             }
             else
             {

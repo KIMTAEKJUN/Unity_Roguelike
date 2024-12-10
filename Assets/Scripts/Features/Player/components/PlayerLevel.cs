@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Features.Player
+namespace Features.Player.components
 {
     public class PlayerLevel : MonoBehaviour
     {

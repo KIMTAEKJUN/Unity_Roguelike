@@ -10,7 +10,7 @@ namespace Core.abstracts
         [SerializeField] private float detectionRange = 10f; // 추적 범위
         private float _currentHealth; // 현재 체력
         
-        public float CurrentHealth // `currentHealth`를 읽기 전용 프로퍼티로 제공
+        public float CurrentHealth
         {
             get => _currentHealth;
             private set => _currentHealth = Mathf.Clamp(value, 0, maxHealth);

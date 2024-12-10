@@ -1,4 +1,5 @@
 using Features.Player;
+using Features.Player.components;
 using UnityEngine;
 
 namespace Features.Projectiles.EnemyProjectiles
@@ -22,15 +23,14 @@ namespace Features.Projectiles.EnemyProjectiles
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // 플레이어에게만 데미지를 입힘
             if (collision.CompareTag("Player"))
             {
-                var playerHealth = collision.GetComponent<PlayerHealth>();
+                var playerHealth = collision.GetComponent<PlayerStats>();
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage(damage);
                 }
-                Destroy(gameObject); // 충돌 후 발사체 파괴
+                Destroy(gameObject);
             }
         }
     }    

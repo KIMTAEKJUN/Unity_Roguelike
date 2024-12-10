@@ -1,5 +1,6 @@
 using Core.abstracts;
 using Features.Player;
+using Features.Player.components;
 using UnityEngine;
 
 namespace Features.Enemies.Bosses
@@ -38,7 +39,7 @@ namespace Features.Enemies.Bosses
 
                 if (target.CompareTag("Player"))
                 {
-                    var playerHealth = target.GetComponent<PlayerHealth>();
+                    var playerHealth = target.GetComponent<PlayerStats>();
                     if (playerHealth != null)
                     {
                         playerHealth.TakeDamage(lightningDamage);
@@ -52,7 +53,7 @@ namespace Features.Enemies.Bosses
         public override void OnBossStart()
         {
             Debug.Log("Storm: 전투 시작과 함께 폭풍우 생성!");
-            lightningCount = 3; // 초기화 로직
+            lightningCount = 3;
         }
 
         protected override void OnPhaseTransition()

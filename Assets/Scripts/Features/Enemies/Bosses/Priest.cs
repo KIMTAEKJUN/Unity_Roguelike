@@ -39,10 +39,6 @@ namespace Features.Enemies.Bosses
                     if (allyHealth != null)
                     {
                         allyHealth.TakeDamage(-healAmount); // 힐량은 음수로 처리
-                
-                        // 힐링 이펙트 추가
-                        // var healEffect = Instantiate(healEffectPrefab, ally.transform.position, Quaternion.identity);
-                        // Destroy(healEffect, 2f); // 2초 뒤 힐 이펙트 제거
                     }
                 }
             }
@@ -51,7 +47,7 @@ namespace Features.Enemies.Bosses
         public override void OnBossStart()
         {
             Debug.Log("Priest: 전투 시작과 함께 성스러운 오라 활성화!");
-            healCooldown *= 1.1f; // 초기화 로직
+            healCooldown *= 1.1f;
         }
 
         protected override void OnPhaseTransition()

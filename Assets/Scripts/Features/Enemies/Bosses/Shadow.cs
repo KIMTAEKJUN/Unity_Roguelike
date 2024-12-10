@@ -1,14 +1,12 @@
 using Core.abstracts;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Features.Enemies.Bosses
 {
     public class Shadow : BossBase
     {
-        [SerializeField] private GameObject clonePrefab;
         [SerializeField] private float teleportCooldown = 4f; // 순간 이동 쿨타임
-        [SerializeField] private int cloneCount = 2; // 복제체 개수
+        [SerializeField] private float teleportRange = 5f; // 순간 이동 범위
 
         private float _teleportTimer;
 
@@ -25,46 +23,25 @@ namespace Features.Enemies.Bosses
 
         private void PerformTeleport()
         {
-            Debug.Log("Shadow: 순간 이동 및 복제!");
-            
+            Debug.Log("Shadow: 순간 이동!");
+
             // Shadow 보스를 무작위 위치로 순간 이동
-            var randomPosition = (Vector2)transform.position + Random.insideUnitCircle * 5f;
+            var randomPosition = (Vector2)transform.position + Random.insideUnitCircle * teleportRange;
             transform.position = randomPosition;
 
-            // 복제체 생성
-            if (clonePrefab == null)
-            {
-                Debug.LogWarning("Shadow: 복제체 프리팹이 설정되지 않았습니다!");
-                return;
-            }
-
-            for (var i = 0; i < cloneCount; i++)
-            {
-                var clonePosition = randomPosition + Random.insideUnitCircle * 1.5f;
-                var clone = Instantiate(clonePrefab, clonePosition, Quaternion.identity);
-        
-                // 복제체를 플레이어가 구분할 수 있도록 색상 변경
-                var spriteRenderer = clone.GetComponent<SpriteRenderer>();
-                if (spriteRenderer != null)
-                {
-                    spriteRenderer.color = Color.gray; // 복제체의 색상 설정
-                }
-
-                Debug.Log("Shadow: 복제체 생성");
-            }
+            Debug.Log($"Shadow: {randomPosition} 위치로 순간 이동 완료!");
         }
-        
+
         public override void OnBossStart()
         {
-            Debug.Log("Shadow: 전투 시작과 함께 그림자 복제 활성화!");
-            cloneCount = 1; // 초기화 로직
+            Debug.Log("Shadow: 전투 시작과 함께 순간 이동 활성화!");
+            teleportCooldown = 4f;
         }
 
         protected override void OnPhaseTransition()
         {
-            cloneCount += 2;
-            Debug.Log("Shadow: 페이즈 2 전환 - 복제체 증가!");
-            // 추후 추가 전환 로직
+            teleportCooldown -= 1f; // 페이즈 전환 시 순간 이동 주기 단축
+            Debug.Log("Shadow: 페이즈 2 전환 - 순간 이동 속도 증가!");
         }
     }
 }

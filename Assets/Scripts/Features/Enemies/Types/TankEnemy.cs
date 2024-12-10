@@ -8,13 +8,19 @@ namespace Features.Enemies.Types
     {
         [SerializeField] private float shieldDuration = 3f;
         [SerializeField] private float shieldCooldown = 10f;
-        private bool _isShielded;
-        private float _shieldTimer;
+        [SerializeField] private Color enhancedAttackColor;
+        [SerializeField] private float effectDuration = 0.5f;
+        
+        private bool _isShielded; // 방어막 활성화 여부
+        private float _shieldTimer; // 방어막 쿨타임 타이머
+        
+        private SpriteRenderer _spriteRenderer;
 
         protected override void Start()
         {
             base.Start();
             _shieldTimer = shieldCooldown;
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         protected override void Update()
@@ -47,6 +53,22 @@ namespace Features.Enemies.Types
             }
 
             base.AttackPlayer();
+            
+            // 색상 이펙트 코루틴 실행
+            if (_spriteRenderer != null)
+            {
+                StartCoroutine(EnhancedAttackEffect());
+            }
+        }
+        
+        private IEnumerator EnhancedAttackEffect()
+        {
+            var originalColor = _spriteRenderer.color;
+            _spriteRenderer.color = enhancedAttackColor;
+
+            yield return new WaitForSeconds(effectDuration);
+
+            _spriteRenderer.color = originalColor;
         }
     }
 }

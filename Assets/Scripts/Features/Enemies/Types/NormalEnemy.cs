@@ -1,6 +1,7 @@
 using System.Collections;
 using Core.abstracts;
 using Features.Player;
+using Features.Player.components;
 using UnityEngine;
 
 namespace Features.Enemies.Types
@@ -9,8 +10,8 @@ namespace Features.Enemies.Types
     {
         [SerializeField] private float enhancedAttackChance = 0.2f; // 
         [SerializeField] private int enhancedDamage = 3; // 강화 공격 데미지
-        [SerializeField] private Color enhancedAttackColor = Color.blue; // 강화 공격 시 적용할 색상
-        [SerializeField] private float effectDuration = 0.5f; // 강화 공격 색상 효과 지속 시간
+        [SerializeField] private Color enhancedAttackColor; // 스킬 사용 시 적용할 색상
+        [SerializeField] private float effectDuration = 0.5f; // 스킬 사용 시 색상 효과 지속 시간
         
         private SpriteRenderer _spriteRenderer;
 
@@ -37,7 +38,7 @@ namespace Features.Enemies.Types
                 }
             }
 
-            var playerHealth = Player.GetComponent<PlayerHealth>();
+            var playerHealth = Player.GetComponent<PlayerStats>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(actualDamage);

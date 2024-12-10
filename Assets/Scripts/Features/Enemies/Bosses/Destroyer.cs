@@ -1,5 +1,6 @@
 using Core.abstracts;
 using Features.Player;
+using Features.Player.components;
 using UnityEngine;
 
 namespace Features.Enemies.Bosses
@@ -38,7 +39,7 @@ namespace Features.Enemies.Bosses
 
                 if (target.CompareTag("Player"))
                 {
-                    var playerHealth = target.GetComponent<PlayerHealth>();
+                    var playerHealth = target.GetComponent<PlayerStats>();
                     if (playerHealth != null)
                     {
                         playerHealth.TakeDamage(explosionDamage);
@@ -57,15 +58,13 @@ namespace Features.Enemies.Bosses
             }
 
             Debug.Log($"{hitCount}개 대상에게 폭발 데미지 적용");
-            
-            // 폭발 효과 (이펙트 추가 예정)
         }
         
         public override void OnBossStart()
         {
             
             Debug.Log("Destroyer: 보스 시작!");
-            explosionRange *= 1.2f; // 초기화 로직
+            explosionRange *= 1.2f;
         }
 
         protected override void OnPhaseTransition()

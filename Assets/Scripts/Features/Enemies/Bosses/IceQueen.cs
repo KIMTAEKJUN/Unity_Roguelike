@@ -60,7 +60,7 @@ namespace Features.Enemies.Bosses
         public override void OnBossStart()
         {
             Debug.Log("IceQueen: 전투 시작과 함께 얼음 장벽 생성!");
-            explosionRange *= 1.2f; // 초기화 로직
+            explosionRange *= 1.2f;
         }
 
         protected override void OnPhaseTransition()

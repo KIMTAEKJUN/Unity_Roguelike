@@ -5,11 +5,11 @@ namespace Features.Projectiles.EnemyProjectiles
 {
     public class FreezeProjectile : MonoBehaviour
     {
-        public float freezeDuration = 5f; // 멈추는 시간
+        public float freezeDuration = 5f;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("FreezeProjectile 충돌 감지!"); // 충돌 감지 로그
+            Debug.Log("FreezeProjectile 충돌 감지!");
             if (!collision.CompareTag("Player"))
             {
                 Debug.Log("플레이어가 아닙니다.");
