@@ -180,6 +180,8 @@ MonoBehaviour:
   speedBoostMultiplier: 2
   boostDuration: 1
   boostCooldown: 5
+  enhancedAttackColor: {r: 0, g: 0, b: 0, a: 1}
+  effectDuration: 0.5
 --- !u!114 &3052893283386775773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,4 +194,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e90ca094fe452e972f9f5367343541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 3
+  expReward: 20
