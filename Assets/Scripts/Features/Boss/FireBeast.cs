@@ -1,9 +1,8 @@
 using Core.abstracts;
-using Features.Player;
 using Features.Player.components;
 using UnityEngine;
 
-namespace Features.Enemies.Bosses
+namespace Features.Boss
 {
     public class FireBeast : BossBase
     {
@@ -25,41 +24,32 @@ namespace Features.Enemies.Bosses
             _fireTimer = 0f;
         }
 
+        // 불길 생성 스킬
         private void CreateFire()
         {
-            Debug.Log("FireBeast: 불길 생성!");
-            
-            // 불길을 생성하여 플레이어와 적에게 지속 데미지를 입힘
             var hitCount = Physics2D.OverlapCircleNonAlloc(transform.position, fireRange, _targetsBuffer);
 
             for (var i = 0; i < hitCount; i++)
             {
                 var target = _targetsBuffer[i];
-
                 if (target.CompareTag("Player"))
                 {
-                    var playerHealth = target.GetComponent<PlayerStats>();
-                    if (playerHealth != null)
-                    {
-                        playerHealth.TakeDamage(fireDamage);
-                    }
+                    target.GetComponent<PlayerStats>()?.TakeDamage(fireDamage);
                 }
             }
 
-            Debug.Log($"{hitCount}개 대상에게 불길 데미지 적용");
+            Debug.Log($"FireBeast: {hitCount}개 대상에게 불길 데미지 적용");
         }
         
-        public override void OnBossStart()
+        protected override void OnBossStart()
         {
-            Debug.Log("FireBeast: 전투 시작과 함께 불길 보호막 활성화!");
             fireCooldown *= 0.9f;
         }
 
         protected override void OnPhaseTransition()
         {
-            fireCooldown -= 1f;
             Debug.Log("FireBeast: 페이즈 2 전환 - 불길 이동 속도 증가!");
-            // 추후 추가 전환 로직
+            fireCooldown -= 1f;
         }
     }
 }

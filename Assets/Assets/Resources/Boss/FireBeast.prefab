@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b54827cf57274177bbdd9bb92c671a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 120
+  maxHealth: 400
   phaseChangeHealthPercentage: 0.5
   moveSpeed: 1.8
   detectionRange: 10

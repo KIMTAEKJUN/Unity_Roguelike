@@ -1,7 +1,7 @@
 using Core.abstracts;
 using UnityEngine;
 
-namespace Features.Enemies.Types
+namespace Features.Enemy
 {
     public class RangeEnemy : EnemyBase
     {

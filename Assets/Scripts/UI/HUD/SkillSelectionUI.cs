@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Core.Manager.Entity;
-using Core.Manager.Entity.enums;
 using Features.Player.components;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Skill
+namespace UI.HUD
 {
     public class SkillSelectionUI : MonoBehaviour
     {
@@ -66,7 +65,7 @@ namespace UI.Skill
                     {
                         skillDescriptions[i].text = $"<size=20><b>{skills[i].skillName}</b></size>\n<size=14>{skills[i].description}</size>";
                         skillDescriptions[i].fontSize = 18;
-                        skillDescriptions[i].enableWordWrapping = true; // 텍스트 줄바꿈 허용
+                        skillDescriptions[i].enableWordWrapping = true;
                     }
                     else
                     {
@@ -80,7 +79,7 @@ namespace UI.Skill
             }
         }
 
-        public void HideUI()
+        private void HideUI()
         {
             gameObject.SetActive(false);
             foreach (var button in skillButtons)
@@ -103,29 +102,8 @@ namespace UI.Skill
 
         private void ApplySkill(SkillData skill)
         {
-            switch (skill.type)
-            {
-                case SkillType.AttackSpeed:
-                    playerStats.IncreaseAttackSpeed(skill.value);
-                    break;
-                case SkillType.MaxHealth:
-                    playerStats.IncreaseMaxHealth(skill.value);
-                    break;
-                case SkillType.MoveSpeed:
-                    playerStats.IncreaseMoveSpeed(skill.value);
-                    break;
-                case SkillType.ProjectileCount:
-                    playerStats.IncreaseProjectileCount(Mathf.RoundToInt(skill.value));
-                    break;
-                case SkillType.Damage:
-                    playerStats.IncreaseDamage(skill.value);
-                    break;
-                default:
-                    Debug.LogWarning($"알 수 없는 스킬 타입: {skill.type}");
-                    break;
-            }
-
-            Debug.Log($"스킬 선택: {skill.skillName} 적용");
+            GameState.Instance.ApplySkill(skill);
+            playerStats.ApplySkill(skill);
         }
     }
 }

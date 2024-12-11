@@ -1,7 +1,7 @@
-using Features.Player;
+﻿using Features.Player;
 using UnityEngine;
 
-namespace Features.Projectiles.EnemyProjectiles
+namespace Features.Projectiles.EnemyProjectTiles
 {
     public class FreezeProjectile : MonoBehaviour
     {

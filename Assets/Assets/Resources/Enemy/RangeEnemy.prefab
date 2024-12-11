@@ -172,11 +172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c17cfaeb4d744cabde6e7aaf75e9c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 2
   detectionRange: 8
-  attackRange: 5
-  damage: 1
-  attackCooldown: 2
+  attackRange: 4
+  damage: 3
+  attackCooldown: 1.5
   freezeProjectilePrefab: {fileID: 4225037033904319345, guid: 8cfd8c5a84af2438e80054e86acc1ed1, type: 3}
 --- !u!114 &3052893283386775773
 MonoBehaviour:
@@ -190,5 +190,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e90ca094fe452e972f9f5367343541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  expReward: 20
+  maxHealth: 15
+  expReward: 15

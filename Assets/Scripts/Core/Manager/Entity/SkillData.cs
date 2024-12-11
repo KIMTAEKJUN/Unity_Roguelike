@@ -1,4 +1,4 @@
-﻿using Core.Manager.Entity.enums;
+﻿using Core.enums;
 using UnityEngine;
 
 namespace Core.Manager.Entity

@@ -1,8 +1,7 @@
 using Core.Manager;
-using Features.Player;
 using UnityEngine;
 
-namespace Features.Enemies.components
+namespace Features.Enemy.components
 {
     public class EnemyHealth : MonoBehaviour
     {

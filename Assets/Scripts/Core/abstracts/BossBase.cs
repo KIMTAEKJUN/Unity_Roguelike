@@ -4,84 +4,93 @@ namespace Core.abstracts
 {
     public abstract class BossBase : MonoBehaviour
     {
-        [SerializeField] public float maxHealth = 100;
+        [SerializeField] public float maxHealth = 100; // 보스의 최대 체력
         [SerializeField] protected float phaseChangeHealthPercentage = 0.5f; // 페이즈 전환 체력 비율
         [SerializeField] private float moveSpeed = 1f; // 보스 이동 속도
-        [SerializeField] private float detectionRange = 10f; // 추적 범위
-        private float _currentHealth; // 현재 체력
+        [SerializeField] private float detectionRange = 10f; // 플레이어 감지 범위
+        private float _currentHealth; // 보스의 현재 체력
+
+        public delegate void DestroyedAction(); // 보스 사망 시 발생하는 이벤트
+        public event DestroyedAction OnDestroyed; // 보스 사망 이벤트
         
-        public float CurrentHealth
+        private Transform _player; // 플레이어 위치
+        public bool isPhaseChanged; // 페이즈 전환 여부
+        
+        private float CurrentHealth
         {
             get => _currentHealth;
-            private set => _currentHealth = Mathf.Clamp(value, 0, maxHealth);
+            set => _currentHealth = Mathf.Clamp(value, 0, maxHealth);
         }
-        
-        public delegate void DestroyedAction();
-        public event DestroyedAction OnDestroyed;
-        
-        protected Transform Player; // 플레이어 위치
-        public bool isPhaseChanged = false; // 페이즈 전환 여부
-        
+
+        // 보스 초기화
         protected virtual void Start()
         {
             _currentHealth = maxHealth;
-            Player = GameObject.FindGameObjectWithTag("Player").transform;
+            FindPlayer();
             OnBossStart();
         }
-
+        
         protected virtual void Update()
         {
-            if (Player == null)
+            if (_player == null)
             {
-                Player = GameObject.FindGameObjectWithTag("Player")?.transform;
-                if (Player == null)
-                {
-                    Debug.LogError("플레이어를 찾을 수 없습니다.");
-                    return;
-                }
+                FindPlayer(); // 플레이어가 없으면 다시 찾음
+                if (_player == null) return;
             }
 
-            FollowPlayer();
-
-            // 체력에 따른 페이즈 전환
-            if (!isPhaseChanged && _currentHealth <= maxHealth * phaseChangeHealthPercentage)
+            // 플레이어를 찾았거나 페이즈 전환 여부가 아니라면 플레이어를 따라가기
+            if (isPhaseChanged || _currentHealth > maxHealth * phaseChangeHealthPercentage)
             {
-                isPhaseChanged = true;
-                OnPhaseTransition();
+                FollowPlayer();
+                return;
             }
+
+            // 페이즈 전환 실행
+            isPhaseChanged = true;
+            OnPhaseTransition();
         }
-        
-        private void FollowPlayer()
+
+        // 플레이어를 찾는 메서드
+        private void FindPlayer()
         {
-            if (Player == null) return;
-
-            var distanceToPlayer = Vector2.Distance(transform.position, Player.position);
-            if (distanceToPlayer <= detectionRange)
+            _player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            if (_player == null)
             {
-                Vector2 direction = (Player.position - transform.position).normalized;
-                transform.Translate(direction * (moveSpeed * Time.deltaTime));
+                Debug.LogError("플레이어를 찾을 수 없습니다.");
             }
         }
-        
+
+        // 플레이어를 따라가는 로직
+        private bool FollowPlayer()
+        {
+            var distanceToPlayer = Vector2.Distance(transform.position, _player.position);
+            if (distanceToPlayer > detectionRange) return false; // 감지 범위 밖이면 이동하지 않음
+
+            var direction = (_player.position - transform.position).normalized; 
+            transform.Translate(direction * (moveSpeed * Time.deltaTime));
+            return true;
+        }
+
+        // 데미지를 받았을 때 호출되는 메서드
         public void TakeDamage(float damage)
         {
             CurrentHealth -= damage;
-            Debug.Log($"{gameObject.name} 데미지 {damage}를 입음. 현재 체력: {CurrentHealth}");
             
             if (_currentHealth <= 0)
             {
                 Die();
             }
         }
-        
+
+        // 보스 사망
         private void Die()
         {
             Debug.Log($"{gameObject.name} 사망");
             OnDestroyed?.Invoke();
             Destroy(gameObject);
         } 
-
-        public abstract void OnBossStart(); // 보스 초기화 구현
-        protected abstract void OnPhaseTransition(); // 페이즈 전환 구현
+        
+        protected abstract void OnBossStart(); // 보스 시작 시 호출
+        protected abstract void OnPhaseTransition(); // 페이즈 전환 시 호출
     }
 }

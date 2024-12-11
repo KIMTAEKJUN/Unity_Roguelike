@@ -175,7 +175,7 @@ MonoBehaviour:
   moveSpeed: 2.5
   detectionRange: 6
   attackRange: 1.5
-  damage: 1
+  damage: 2
   attackCooldown: 1.5
   enhancedAttackChance: 0.3
   enhancedDamage: 3
@@ -193,4 +193,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e90ca094fe452e972f9f5367343541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 20
+  expReward: 10

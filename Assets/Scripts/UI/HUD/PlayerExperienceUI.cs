@@ -1,9 +1,8 @@
-﻿using Features.Player;
-using Features.Player.components;
+﻿using Features.Player.components;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Player
+namespace UI.HUD
 {
     public class PlayerExperienceUI : MonoBehaviour
     {
@@ -28,7 +27,7 @@ namespace UI.Player
                 experienceBar.value = playerLevel.GetExpProgress();
             }
         }
-
+        
         private void UpdateUI(int newLevel)
         {
             if (levelText != null)

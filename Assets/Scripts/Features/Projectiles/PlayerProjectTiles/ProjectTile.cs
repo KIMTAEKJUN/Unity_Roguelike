@@ -1,8 +1,8 @@
 using Core.abstracts;
-using Features.Enemies.components;
+using Features.Enemy.components;
 using UnityEngine;
 
-namespace Features.Projectiles.PlayerProjectiles
+namespace Features.Projectiles.PlayerProjectTiles
 {
     public class Projectile : MonoBehaviour
     {

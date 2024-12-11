@@ -1,5 +1,5 @@
 using Features.Player.components;
-using Features.Projectiles.PlayerProjectiles;
+using Features.Projectiles.PlayerProjectTiles;
 using UnityEngine;
 
 namespace Features.Player
@@ -9,8 +9,8 @@ namespace Features.Player
         public GameObject projectilePrefab;
         
         private PlayerStats _playerStats;
-        private float _attackTimer = 0f; // 공격 쿨다운 타이머
-        private bool _isFrozen = false; // 플레이어가 얼어있는지 여부
+        private float _attackTimer; // 공격 쿨다운 타이머
+        private bool _isFrozen; // 플레이어가 얼어있는지 여부
         
         private void Start()
         {

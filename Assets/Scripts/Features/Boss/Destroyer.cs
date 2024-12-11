@@ -1,9 +1,8 @@
 using Core.abstracts;
-using Features.Player;
 using Features.Player.components;
 using UnityEngine;
 
-namespace Features.Enemies.Bosses
+namespace Features.Boss
 {
     public class Destroyer : BossBase
     {
@@ -25,11 +24,9 @@ namespace Features.Enemies.Bosses
             _explosionTimer = 0f;
         }
 
+        // 폭발 스킬
         private void PerformExplosion()
         {
-            Debug.Log("Destroyer: 광역 폭발!");
-            
-            // 폭발 범위 내의 모든 적과 플레이어에게 데미지를 입힘
             var hitCount = Physics2D.OverlapCircleNonAlloc(transform.position, explosionRange, _targetsBuffer);
 
             for (var i = 0; i < hitCount; i++)
@@ -39,39 +36,26 @@ namespace Features.Enemies.Bosses
 
                 if (target.CompareTag("Player"))
                 {
-                    var playerHealth = target.GetComponent<PlayerStats>();
-                    if (playerHealth != null)
-                    {
-                        playerHealth.TakeDamage(explosionDamage);
-                        Debug.Log($"Destroyer: 플레이어에게 {explosionDamage} 데미지!");
-                    }
+                    target.GetComponent<PlayerStats>()?.TakeDamage(explosionDamage);
                 }
                 else if (target.CompareTag("Boss"))
                 {
-                    var bossBase = target.GetComponent<BossBase>();
-                    if (bossBase != null)
-                    {
-                        bossBase.TakeDamage(explosionDamage);
-                        Debug.Log($"Destroyer: 보스에게 {explosionDamage} 데미지!");
-                    }
+                    target.GetComponent<BossBase>()?.TakeDamage(explosionDamage);
                 }
             }
 
-            Debug.Log($"{hitCount}개 대상에게 폭발 데미지 적용");
+            Debug.Log($"Destroyer: {hitCount}개 대상에게 폭발 데미지 적용");
         }
         
-        public override void OnBossStart()
+        protected override void OnBossStart()
         {
-            
-            Debug.Log("Destroyer: 보스 시작!");
             explosionRange *= 1.2f;
         }
 
         protected override void OnPhaseTransition()
         {
-            explosionRange *= 1.5f;
             Debug.Log("Destroyer: 페이즈 2 전환 - 폭발 범위 증가!");
-            // 추후 추가 전환 로직
+            explosionRange *= 1.5f;
         }
     }
 }

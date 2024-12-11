@@ -3,7 +3,7 @@ using Features.Player;
 using Features.Player.components;
 using UnityEngine;
 
-namespace Features.Enemies.Bosses
+namespace Features.Boss
 {
     public class Storm : BossBase
     {
@@ -26,33 +26,25 @@ namespace Features.Enemies.Bosses
             _lightningTimer = 0f;
         }
 
+        // 번개 공격
         private void CastLightning()
         {
-            Debug.Log("Storm: 번개 공격!");
-            
-            // 번개를 플레이어 주변에 떨어뜨림
             var hitCount = Physics2D.OverlapCircleNonAlloc(transform.position, lightningRange, _targetsBuffer);
 
             for (var i = 0; i < hitCount; i++)
             {
                 var target = _targetsBuffer[i];
+                if (target == null || !target.CompareTag("Player")) continue;
 
-                if (target.CompareTag("Player"))
-                {
-                    var playerHealth = target.GetComponent<PlayerStats>();
-                    if (playerHealth != null)
-                    {
-                        playerHealth.TakeDamage(lightningDamage);
-                    }
-                }
+                var playerHealth = target.GetComponent<PlayerStats>();
+                playerHealth?.TakeDamage(lightningDamage);
             }
 
-            Debug.Log($"{hitCount}개 대상에게 번개 데미지 적용");
+            Debug.Log($"{hitCount}개의 대상에게 번개 데미지 적용");
         }
         
-        public override void OnBossStart()
+        protected override void OnBossStart()
         {
-            Debug.Log("Storm: 전투 시작과 함께 폭풍우 생성!");
             lightningCount = 3;
         }
 
@@ -60,7 +52,6 @@ namespace Features.Enemies.Bosses
         {
             lightningCount += 2;
             Debug.Log("Storm: 페이즈 2 전환 - 번개 개수 증가!");
-            // 추후 추가 전환 로직
         }
     }
 }

@@ -1,14 +1,14 @@
 using Core.abstracts;
 using UnityEngine;
 
-namespace Features.Enemies.Bosses
+namespace Features.Boss
 {
     public class Shadow : BossBase
     {
         [SerializeField] private float teleportCooldown = 4f; // 순간 이동 쿨타임
         [SerializeField] private float teleportRange = 5f; // 순간 이동 범위
 
-        private float _teleportTimer;
+        private float _teleportTimer; // 순간 이동 타이머
 
         protected override void Update()
         {
@@ -21,10 +21,9 @@ namespace Features.Enemies.Bosses
             _teleportTimer = 0f;
         }
 
+        // 순간 이동 스킬
         private void PerformTeleport()
         {
-            Debug.Log("Shadow: 순간 이동!");
-
             // Shadow 보스를 무작위 위치로 순간 이동
             var randomPosition = (Vector2)transform.position + Random.insideUnitCircle * teleportRange;
             transform.position = randomPosition;
@@ -32,15 +31,14 @@ namespace Features.Enemies.Bosses
             Debug.Log($"Shadow: {randomPosition} 위치로 순간 이동 완료!");
         }
 
-        public override void OnBossStart()
+        protected override void OnBossStart()
         {
-            Debug.Log("Shadow: 전투 시작과 함께 순간 이동 활성화!");
             teleportCooldown = 4f;
         }
 
         protected override void OnPhaseTransition()
         {
-            teleportCooldown -= 1f; // 페이즈 전환 시 순간 이동 주기 단축
+            teleportCooldown -= 1f;
             Debug.Log("Shadow: 페이즈 2 전환 - 순간 이동 속도 증가!");
         }
     }

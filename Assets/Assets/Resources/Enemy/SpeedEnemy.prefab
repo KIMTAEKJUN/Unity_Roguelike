@@ -172,11 +172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ba52aab24c4f56afd225bd9f7fde59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 4
   detectionRange: 8
   attackRange: 1.5
   damage: 1
-  attackCooldown: 1
+  attackCooldown: 0.5
   speedBoostMultiplier: 2
   boostDuration: 1
   boostCooldown: 5
@@ -194,5 +194,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e90ca094fe452e972f9f5367343541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  expReward: 20
+  maxHealth: 10
+  expReward: 5

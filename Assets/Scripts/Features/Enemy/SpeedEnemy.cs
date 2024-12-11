@@ -2,7 +2,7 @@ using System.Collections;
 using Core.abstracts;
 using UnityEngine;
 
-namespace Features.Enemies.Types
+namespace Features.Enemy
 {
     public class SpeedEnemy : EnemyBase
     {
@@ -28,14 +28,16 @@ namespace Features.Enemies.Types
         {
             base.Update();
 
-            _boostTimer += Time.deltaTime;
             if (_boostTimer >= boostCooldown && !_isBoosting)
             {
                 StartCoroutine(SpeedBoost());
                 Debug.Log("SpeedEnemy 스킬 사용");
             }
+
+            _boostTimer += Time.deltaTime;
         }
 
+        // 이동 속도 증가 코루틴
         private IEnumerator SpeedBoost()
         {
             _isBoosting = true;

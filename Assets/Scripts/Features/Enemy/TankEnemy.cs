@@ -2,12 +2,12 @@ using System.Collections;
 using Core.abstracts;
 using UnityEngine;
 
-namespace Features.Enemies.Types
+namespace Features.Enemy
 {
     public class TankEnemy : EnemyBase
     {
-        [SerializeField] private float shieldDuration = 3f;
-        [SerializeField] private float shieldCooldown = 10f;
+        [SerializeField] private float shieldDuration = 3f; // 방어막 지속 시간
+        [SerializeField] private float shieldCooldown = 10f; // 방어막 재사용 쿨타임
         [SerializeField] private Color enhancedAttackColor;
         [SerializeField] private float effectDuration = 0.5f;
         
@@ -26,14 +26,16 @@ namespace Features.Enemies.Types
         protected override void Update()
         {
             base.Update();
-            _shieldTimer += Time.deltaTime;
 
             if (_shieldTimer >= shieldCooldown && !_isShielded)
             {
                 StartCoroutine(ActivateShield());
             }
+
+            _shieldTimer += Time.deltaTime;
         }
 
+        // 방어막 활성화 코루틴
         private IEnumerator ActivateShield()
         {
             _isShielded = true;
@@ -54,7 +56,6 @@ namespace Features.Enemies.Types
 
             base.AttackPlayer();
             
-            // 색상 이펙트 코루틴 실행
             if (_spriteRenderer != null)
             {
                 StartCoroutine(EnhancedAttackEffect());
