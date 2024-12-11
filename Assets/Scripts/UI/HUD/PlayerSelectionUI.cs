@@ -22,7 +22,7 @@ namespace UI.HUD
         public void SelectPlayer(int index)
         {
             switcher.SwitchPlayer(index);
-            Debug.Log($"스킨 {index} 선택");
+            Debug.Log($"플레이어 {index} 선택");
         }
     }
 }
